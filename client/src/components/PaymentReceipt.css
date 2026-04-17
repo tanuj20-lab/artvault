@@ -1,0 +1,260 @@
+/* ========= PAYMENT RECEIPT MODAL ========= */
+
+/* Overlay */
+.receipt-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Modal */
+.receipt-modal {
+  background: linear-gradient(160deg, #1a1600 0%, #0f0f0f 40%, #13100a 100%);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 20px;
+  max-width: 560px;
+  width: 100%;
+  box-shadow:
+    0 40px 100px rgba(0,0,0,0.9),
+    0 0 0 1px rgba(212,175,55,0.15),
+    inset 0 1px 0 rgba(212,175,55,0.1);
+  overflow: hidden;
+  animation: fadeInUp 0.3s ease;
+}
+
+/* Header */
+.receipt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 0;
+}
+.receipt-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.receipt-crown {
+  font-size: 1.4rem;
+  color: var(--gold);
+  animation: crownGlow 3s ease infinite;
+}
+.receipt-brand {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+}
+.receipt-close {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+.receipt-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+/* Success Banner */
+.receipt-success-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 20px 24px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(74,222,128,0.08), rgba(74,222,128,0.04));
+  border: 1px solid rgba(74,222,128,0.25);
+  border-radius: 12px;
+}
+.receipt-success-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(34,197,94,0.3);
+}
+.receipt-success-title {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 0.95rem;
+  color: #4ade80;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.receipt-success-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Artwork Row */
+.receipt-artwork-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px 20px;
+}
+.receipt-artwork-img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(212,175,55,0.2);
+  flex-shrink: 0;
+}
+.receipt-artwork-info { flex: 1; }
+.receipt-artwork-title {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.receipt-artwork-category {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.receipt-delivery-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.05em;
+}
+.status-processing { background: rgba(212,175,55,0.1); color: var(--gold); border: 1px solid rgba(212,175,55,0.25); }
+.status-shipped { background: rgba(99,179,237,0.1); color: #63b3ed; border: 1px solid rgba(99,179,237,0.25); }
+.status-delivered { background: rgba(74,222,128,0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.25); }
+
+.receipt-amount-col { text-align: right; flex-shrink: 0; }
+.receipt-amount-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.receipt-amount {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: -0.04em;
+  text-shadow: 0 0 20px rgba(212,175,55,0.4);
+}
+
+/* Perforation Divider */
+.receipt-perforation {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
+  margin: 0 0 20px;
+}
+.receipt-perforation::before,
+.receipt-perforation::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #050505;
+  border: 1px solid rgba(212,175,55,0.2);
+}
+.receipt-perforation::before { left: -8px; }
+.receipt-perforation::after { right: -8px; }
+
+/* Details Grid */
+.receipt-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 24px 20px;
+}
+.receipt-detail-item { display: flex; flex-direction: column; gap: 4px; }
+.receipt-detail-item.full-width { grid-column: 1 / -1; }
+.receipt-detail-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+}
+.receipt-detail-value {
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+}
+.txn-id {
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  color: var(--gold);
+  word-break: break-all;
+  background: rgba(212,175,55,0.06);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(212,175,55,0.15);
+}
+
+/* Footer */
+.receipt-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  background: rgba(212,175,55,0.03);
+  border-top: 1px solid rgba(212,175,55,0.1);
+}
+.receipt-stamp {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid rgba(74,222,128,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-15deg);
+  flex-shrink: 0;
+}
+.receipt-stamp-text {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #4ade80;
+  letter-spacing: 0.08em;
+}
+.receipt-footer-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Actions */
+.receipt-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding: 16px 24px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}

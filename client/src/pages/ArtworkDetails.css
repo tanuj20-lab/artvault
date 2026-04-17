@@ -1,0 +1,24 @@
+.artwork-detail-page { padding: 100px 0 80px; min-height: 100vh; }
+.artwork-detail-back { margin-bottom: 24px; }
+.artwork-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.artwork-detail-img-wrap { position: relative; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lift), 0 0 0 1px rgba(212, 175, 55,0.12); }
+.artwork-detail-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+.artwork-detail-status { position: absolute; top: 16px; left: 16px; }
+.artwork-detail-title { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 20px; letter-spacing: -0.04em; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-weight: 800; }
+.artwork-detail-artist { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.artist-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--gold-glow); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--gold); font-size: 1.1rem; flex-shrink: 0; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; }
+.artist-name { font-weight: 700; color: var(--text-primary); font-family: 'Inter', sans-serif; }
+.artist-bio-short { color: var(--text-muted); font-size: 0.85rem; font-family: 'Inter', -apple-system, sans-serif; letter-spacing: -0.01em; }
+.artwork-detail-desc { color: var(--text-secondary); line-height: 1.8; margin-bottom: 24px; font-family: 'Inter', -apple-system, sans-serif; font-size: 1rem; letter-spacing: -0.01em; }
+.artwork-detail-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+.spec-item { background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 12px; }
+.spec-label { display: block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-dark); margin-bottom: 4px; font-family: 'Inter', sans-serif; font-weight: 700; }
+.spec-value { color: var(--text-primary); font-weight: 600; font-family: 'Inter', sans-serif; }
+.spec-value.price { color: var(--gold); font-size: 1.2rem; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; font-weight: 800; letter-spacing: -0.03em; }
+.artwork-auction-info { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px; }
+.artwork-auction-info h3 { color: var(--gold-dark); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; font-family: 'Inter', sans-serif; font-weight: 700; }
+.auction-current-bid { font-size: 2rem; font-weight: 800; color: var(--gold); font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; letter-spacing: -0.04em; }
+.bid-by { color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; }
+.auction-end-date { color: var(--text-secondary); font-size: 0.85rem; margin-top: 4px; }
+.artwork-detail-actions { display: flex; flex-direction: column; gap: 12px; }
+@media (max-width: 900px) { .artwork-detail-grid { grid-template-columns: 1fr; } }

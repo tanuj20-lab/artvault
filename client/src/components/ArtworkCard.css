@@ -1,0 +1,133 @@
+.artwork-card {
+  display: block;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  text-decoration: none;
+  color: inherit;
+}
+
+.artwork-card:hover {
+  border-color: var(--border);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lift);
+}
+
+.artwork-img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--bg-secondary);
+}
+
+.artwork-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.artwork-card:hover .artwork-img { transform: scale(1.06); }
+
+.artwork-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7,6,15,0.75) 0%, transparent 60%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.artwork-card:hover .artwork-overlay { opacity: 1; }
+
+.artwork-view-btn {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  color: #1a1000;
+  padding: 10px 22px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+
+.artwork-category-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(7,6,15,0.8);
+  backdrop-filter: blur(6px);
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(212, 175, 55,0.25);
+  color: var(--gold-light);
+  font-family: 'Inter', sans-serif;
+}
+
+.artwork-live-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(90, 24, 70,0.2);
+  color: var(--pink-light);
+  border: 1px solid rgba(90, 24, 70,0.4);
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-family: 'Inter', sans-serif;
+  animation: pulse-royal 1.5s infinite;
+}
+
+.artwork-sold-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(30,20,10,0.75);
+  color: var(--text-muted);
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: 'Inter', sans-serif;
+}
+
+.artwork-info { padding: 18px; }
+
+.artwork-title {
+  font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.02em;
+}
+
+.artwork-artist { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 4px; }
+.artwork-medium { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 10px; font-style: italic; font-family: 'Inter', -apple-system, sans-serif; }
+
+.artwork-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.artwork-price { color: var(--gold); font-weight: 800; font-size: 1rem; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; letter-spacing: -0.03em; }
+.artwork-dims { color: var(--text-muted); font-size: 0.78rem; }
