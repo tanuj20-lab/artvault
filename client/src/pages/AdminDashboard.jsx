@@ -20,7 +20,9 @@ const AdminDashboard = () => {
       setUsers(usersRes.data.data);
       setArtworks(artRes.data.data);
       setAuctions(auctRes.data.data);
-    } catch {} finally { setLoading(false); }
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to load dashboard data');
+    } finally { setLoading(false); }
   };
 
   useEffect(() => { fetchData(); }, []);

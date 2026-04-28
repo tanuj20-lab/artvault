@@ -20,7 +20,9 @@ const ArtistDashboard = () => {
       const [artRes, auctRes] = await Promise.all([getMyArtworks(), getMyAuctions()]);
       setArtworks(artRes.data.data);
       setAuctions(auctRes.data.data);
-    } catch {} finally { setLoading(false); }
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to load dashboard data');
+    } finally { setLoading(false); }
   };
 
   useEffect(() => { fetchData(); }, []);

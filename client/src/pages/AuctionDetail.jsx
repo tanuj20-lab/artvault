@@ -14,6 +14,10 @@ const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
 const useCountdown = (endDate) => {
   const [t, setT] = useState({});
   useEffect(() => {
+    if (!endDate) {
+      return undefined;
+    }
+
     const calc = () => {
       const diff = new Date(endDate) - new Date();
       if (diff <= 0) return setT({ expired: true });
@@ -56,7 +60,7 @@ const AuctionDetail = () => {
       setBidAmount(data.bidAmount + 1);
     });
     return () => { socket.emit('leaveAuction', id); socket.disconnect(); };
-  }, [id]);
+  }, [id, dispatch, navigate]);
 
   const handleBid = async (e) => {
     e.preventDefault();

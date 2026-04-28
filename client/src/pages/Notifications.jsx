@@ -2,29 +2,34 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNotifications, markRead, markAllRead } from '../services/api';
 import { setNotifications, markOneRead, markAllRead as markAllReadState } from '../redux/notificationSlice';
+import toast from 'react-hot-toast';
 
 const Notifications = () => {
   const dispatch = useDispatch();
-  const { notifications, loading } = useSelector(s => s.notifications);
+  const { notifications } = useSelector(s => s.notifications);
 
   useEffect(() => {
     getNotifications()
       .then(({ data }) => dispatch(setNotifications(data.data)))
-      .catch(() => {});
-  }, []);
+      .catch((err) => toast.error(err.response?.data?.message || 'Failed to load notifications'));
+  }, [dispatch]);
 
   const handleMarkRead = async (id) => {
     try {
       await markRead(id);
       dispatch(markOneRead(id));
-    } catch {}
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to mark notification as read');
+    }
   };
 
   const handleMarkAll = async () => {
     try {
       await markAllRead();
       dispatch(markAllReadState());
-    } catch {}
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to mark notifications as read');
+    }
   };
 
   const typeIcons = { bid: '💰', auction_won: '🏆', payment: '✅', general: '📢' };

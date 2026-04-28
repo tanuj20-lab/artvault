@@ -7,6 +7,10 @@ const useCountdown = (endDate) => {
   const [timeLeft, setTimeLeft] = useState({});
 
   useEffect(() => {
+    if (!endDate) {
+      return undefined;
+    }
+
     const calc = () => {
       const diff = new Date(endDate) - new Date();
       if (diff <= 0) return setTimeLeft({ expired: true });
@@ -26,9 +30,10 @@ const useCountdown = (endDate) => {
 };
 
 const AuctionCard = ({ auction }) => {
+  const timeLeft = useCountdown(auction?.auctionEndDate);
+
   if (!auction) return null;
-  const { artworkId, startingBid, currentHighestBid, auctionEndDate, status } = auction;
-  const timeLeft = useCountdown(auctionEndDate);
+  const { artworkId, startingBid, currentHighestBid, status } = auction;
   const imgSrc = artworkId?.imageUrl?.startsWith('http')
     ? artworkId.imageUrl
     : `${API_URL}${artworkId?.imageUrl || ''}`;

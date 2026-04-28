@@ -27,9 +27,8 @@ const Navbar = () => {
     }
   }, [user, dispatch]);
 
-  useEffect(() => { setMenuOpen(false); }, [location]);
-
   const handleLogout = () => {
+    setMenuOpen(false);
     dispatch(logout());
     navigate('/');
   };
@@ -49,7 +48,7 @@ const Navbar = () => {
           <span className="brand-text">ArtVault</span>
         </Link>
 
-        <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
+        <div className={`navbar-links ${menuOpen ? 'open' : ''}`} onClick={(e) => e.target.closest('a') && setMenuOpen(false)}>
           <Link to="/gallery" className={`nav-link ${location.pathname === '/gallery' ? 'active' : ''}`}>Gallery</Link>
           <Link to="/auctions" className={`nav-link ${location.pathname === '/auctions' ? 'active' : ''}`}>Auctions</Link>
           {user ? (

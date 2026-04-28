@@ -173,20 +173,29 @@ const Home = () => {
       </section>
 
       {/* ── LIVE AUCTIONS ── */}
-      {activeAuctions.length > 0 && (
-        <section className="section auctions-section">
-          <div className="container">
-            <div className="section-header">
-              <div>
-                <h2 className="section-title">🔴 Live Auctions</h2>
-                <p className="section-subtitle">Place bids on exclusive artworks before time runs out!</p>
-              </div>
-              <Link to="/auctions" className="btn btn-secondary">All Auctions →</Link>
+      <section className="section auctions-section">
+        <div className="container">
+          <div className="section-header">
+            <div>
+              <h2 className="section-title">🔴 Live Auctions</h2>
+              <p className="section-subtitle">Place bids on exclusive artworks before time runs out!</p>
             </div>
-            <div className="grid-3">{activeAuctions.map(a => <AuctionCard key={a._id} auction={a} />)}</div>
+            <Link to="/auctions" className="btn btn-secondary">All Auctions →</Link>
           </div>
-        </section>
-      )}
+          {loading ? (
+            <div className="loading-spinner"><div className="spinner" /></div>
+          ) : activeAuctions.length > 0 ? (
+            <div className="grid-3">{activeAuctions.map(a => <AuctionCard key={a._id} auction={a} />)}</div>
+          ) : (
+            <div className="empty-state" style={{ padding: '40px' }}>
+              <p style={{ fontSize: '2.5rem' }}>🔨</p>
+              <h3>No live auctions right now</h3>
+              <p>Check back soon — new auctions are added regularly!</p>
+              <Link to="/auctions" className="btn btn-primary" style={{ marginTop: '16px' }}>Browse All Auctions</Link>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* ── HOW IT WORKS ── */}
       <section className="section how-section">

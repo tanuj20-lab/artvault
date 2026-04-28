@@ -21,7 +21,9 @@ const BuyerDashboard = () => {
       const [ordRes, bidRes] = await Promise.all([getMyOrders(), getMyBids()]);
       setOrders(ordRes.data.data);
       setBids(bidRes.data.data);
-    } catch {} finally { setLoading(false); }
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Failed to load dashboard data');
+    } finally { setLoading(false); }
   };
 
   useEffect(() => { fetchData(); }, []);

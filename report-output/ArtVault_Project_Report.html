@@ -1,0 +1,270 @@
+<!doctype html><html><head><meta charset='utf-8'>
+<title>ArtVault Project Report</title>
+
+        <style>
+        @page { size: A4; margin: 1in 0.85in 1in 1in; }
+        body { font-family: "Times New Roman", serif; font-size: 12pt; line-height: 1.45; color: #111; }
+        .page { page-break-after: always; min-height: 9.5in; }
+        .cover { text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 9.5in; }
+        h1 { font-size: 16pt; text-align: left; margin: 0 0 16px; text-transform: uppercase; }
+        h2 { font-size: 14pt; margin: 18px 0 8px; }
+        h3 { font-size: 12pt; margin: 14px 0 6px; }
+        p { text-align: justify; margin: 0 0 10px; }
+        .center { text-align: center; }
+        .title { font-size: 24pt; font-weight: bold; letter-spacing: 1px; }
+        .subtitle { font-size: 18pt; font-weight: bold; }
+        .toc li { margin-bottom: 8px; }
+        ul { margin-top: 4px; }
+        li { margin-bottom: 5px; text-align: justify; }
+        table { width: 100%; border-collapse: collapse; margin: 8px 0 16px; }
+        td, th { border: 1px solid #333; padding: 7px; vertical-align: top; }
+        .caption { font-weight: bold; text-align: center; margin: 10px 0 6px; }
+        img.shot { width: 100%; max-height: 6.5in; object-fit: contain; border: 1px solid #888; }
+        .note { font-size: 10pt; color: #333; }
+        </style></head><body>
+        
+<section class='page cover'>
+<div style='font-size:18pt;font-weight:bold'>A PROJECT REPORT</div>
+<div style='font-size:14pt;font-weight:bold;margin-top:16px'>ON</div>
+<div class='title' style='margin-top:22px'>ArtVault</div>
+<div class='subtitle'>Online Art Gallery & Auction Platform</div>
+<p class='center' style='margin-top:34px'>Submitted in partial fulfillment of the requirements for the award of degree/course completion</p>
+<div style='font-size:14pt;font-weight:bold;margin-top:24px'>Submitted By</div>
+<div style='font-size:13pt;font-weight:bold;margin-top:6px'>[Student Name]</div>
+<div>[Roll Number / Enrollment Number]</div>
+<div style='font-size:14pt;font-weight:bold;margin-top:26px'>Under the Guidance of</div>
+<div>[Guide / Faculty Name]</div>
+<div style='margin-top:42px;font-weight:bold'>[Department Name]</div>
+<div style='font-weight:bold'>[College / University Name]</div>
+<div style='font-weight:bold'>Academic Year 2025-2026</div>
+</section>
+<section class='page'>
+<h1>CERTIFICATE</h1>
+<p>This is to certify that the project report entitled &quot;ArtVault - Online Art Gallery &amp; Auction Platform&quot; has been prepared and submitted by [Student Name] in partial fulfillment of the requirements of the academic project work. The project has been developed using the MERN stack and demonstrates a complete web-based platform for artwork discovery, artist uploads, real-time auctions, bidding, mock payments, notifications, and administrative management.</p>
+<p>The work presented in this report is based on the project files, database models, frontend pages, backend APIs, and implementation available in the ArtVault source code.</p>
+<p>Signature of Guide</p><p>[Guide / Faculty Name]</p>
+</section>
+<section class='page'>
+<h1>DECLARATION</h1>
+<p>I hereby declare that this project report titled &quot;ArtVault - Online Art Gallery &amp; Auction Platform&quot; is prepared from the implemented project work. The contents describe the design, development, modules, technologies, database structure, testing, and screenshots of the application. The report has been prepared for academic submission and all project-specific information has been adapted from the actual ArtVault project.</p>
+<p>Date: ____________</p><p>Place: ____________</p><p>Signature: ____________</p>
+</section>
+<section class='page'>
+<h1>ACKNOWLEDGEMENT</h1>
+<p>I express my sincere gratitude to my guide, teachers, and institution for providing the opportunity and support to complete this project. Their guidance helped in understanding the software development process, full-stack architecture, frontend-backend integration, database design, and testing methodology.</p>
+<p>I also thank everyone who provided feedback during the development of ArtVault. The project helped strengthen practical knowledge of React, Node.js, Express, MongoDB, REST APIs, authentication, role-based authorization, file upload handling, and real-time communication using Socket.IO.</p>
+</section>
+<section class='page'>
+<h1>ABSTRACT</h1>
+<p>ArtVault is an Online Art Gallery &amp; Auction Platform designed to connect artists, buyers, and administrators through a single digital marketplace. The platform allows artists to upload artwork, manage artwork details, create auctions, and track auction status. Buyers can browse artwork, participate in live auctions, place bids, manage orders, and view payment receipts. Administrators can monitor users, artworks, auctions, and platform statistics.</p>
+<p>The project is developed using the MERN stack. The frontend uses React with Vite, Redux Toolkit, React Router, Axios, and Socket.IO client. The backend uses Node.js, Express, MongoDB with Mongoose, JWT-based authentication, Multer for artwork uploads, and Socket.IO for real-time auction updates. The system includes role-based access control for Artist, Buyer, and Admin roles.</p>
+<p>The application demonstrates core concepts of modern full-stack development including REST API design, secure authentication, protected routes, reusable components, responsive UI design, database modeling, live bid updates, and structured dashboard workflows.</p>
+</section>
+<section class='page'><h1>TABLE OF CONTENTS</h1><ol class='toc'>
+<li>Certificate</li>
+<li>Declaration</li>
+<li>Acknowledgement</li>
+<li>Abstract</li>
+<li>1. Introduction</li>
+<li>2. System Analysis</li>
+<li>3. Requirement Specification</li>
+<li>4. System Design</li>
+<li>5. Module Description</li>
+<li>6. Implementation Details</li>
+<li>7. User Interface Screenshots</li>
+<li>8. Testing</li>
+<li>9. Future Scope</li>
+<li>10. Conclusion</li>
+<li>11. References</li>
+</ol></section>
+<section class='page'>
+<h1>1. INTRODUCTION</h1>
+<p>The art market increasingly depends on digital platforms for visibility, sales, and audience engagement. Traditional galleries are limited by location, operating hours, and manual coordination between artists and buyers. ArtVault provides a digital solution where original artworks can be listed, discovered, auctioned, and purchased through an integrated web application.</p>
+<p>The platform supports artwork browsing, category and price-based filtering, detailed artwork pages, live auctions, bid tracking, mock payment flow, notifications, and separate dashboards for artists, buyers, and administrators. It is designed as a full-stack MERN application with a responsive dark art-gallery aesthetic.</p>
+<h2>1.1 Project Title</h2>
+<p>ArtVault - Online Art Gallery &amp; Auction Platform</p>
+<h2>1.2 Problem Statement</h2>
+<p>Artists need a simple way to display and sell their work online, while buyers need a trusted system to discover artwork and participate in transparent auctions. Manual auction handling can be slow, error-prone, and difficult to monitor. ArtVault solves this by providing a centralized platform with role-based workflows and real-time bid updates.</p>
+<h2>1.3 Objectives</h2>
+<ul>
+<li>To provide an online gallery where users can browse artworks by category, price, status, and search keyword.</li>
+<li>To allow artists to upload artwork and manage artwork and auction records.</li>
+<li>To support live auctions with current bid tracking and countdown timers.</li>
+<li>To allow buyers to place bids, view bid history, complete mock payments, and view receipts.</li>
+<li>To provide notifications for auction, bid, and payment events.</li>
+<li>To provide an admin dashboard for user, artwork, auction, and platform overview management.</li>
+</ul>
+</section>
+<section class='page'>
+<h1>2. SYSTEM ANALYSIS</h1>
+<h2>2.1 Existing System</h2>
+<p>In many traditional art sale workflows, artists display work through physical galleries, direct contacts, or static catalogues. Auction updates may be handled manually and buyers may not receive instant bid status information. Such systems can limit reach, reduce transparency, and require more coordination.</p>
+<h2>2.2 Proposed System</h2>
+<p>The proposed system is a web-based MERN application that digitizes artwork listing, auction participation, payment simulation, and user management. It provides a structured interface for three user roles: Artist, Buyer, and Admin. Artists upload and auction artwork, buyers browse and bid, and admins monitor the platform.</p>
+<h2>2.3 Advantages of Proposed System</h2>
+<ul>
+<li>Centralized artwork discovery and auction management.</li>
+<li>Role-based authentication and protected dashboards.</li>
+<li>Real-time bid updates through Socket.IO.</li>
+<li>Responsive frontend with reusable React components.</li>
+<li>Structured database models for users, artworks, auctions, bids, orders, and notifications.</li>
+<li>Mock payment flow that can later be integrated with Razorpay, Stripe, or another payment gateway.</li>
+</ul>
+</section>
+<section class='page'>
+<h1>3. REQUIREMENT SPECIFICATION</h1>
+<h2>3.1 Hardware Requirements</h2>
+<ul>
+<li>Processor: Intel i3 / Ryzen 3 or higher</li>
+<li>RAM: 4 GB minimum, 8 GB recommended</li>
+<li>Storage: 500 MB for project files and dependencies</li>
+<li>Network: Internet connection for cloud image URLs and package installation</li>
+</ul>
+<h2>3.2 Software Requirements</h2>
+<ul>
+<li>Operating System: Windows / Linux / macOS</li>
+<li>Frontend Runtime: Node.js 18+ with Vite</li>
+<li>Backend Runtime: Node.js with Express</li>
+<li>Database: MongoDB local or MongoDB Atlas</li>
+<li>Editor: Visual Studio Code</li>
+<li>Browser: Microsoft Edge / Chrome / Firefox</li>
+</ul>
+<h2>3.3 Technology Stack</h2>
+<ul>
+<li>Frontend: React 19, Vite, Redux Toolkit, React Router, Axios, React Hot Toast, Socket.IO Client.</li>
+<li>Backend: Node.js, Express, CORS, dotenv, JWT, bcryptjs, Multer, Socket.IO.</li>
+<li>Database: MongoDB with Mongoose schemas.</li>
+<li>Development Tools: ESLint, Nodemon, npm scripts, Git.</li>
+</ul>
+</section>
+<section class='page'>
+<h1>4. SYSTEM DESIGN</h1>
+<p>ArtVault follows a client-server architecture. The React frontend communicates with the Express backend through REST APIs. MongoDB stores persistent records, while Socket.IO enables live auction bid events. Authentication uses JWT tokens stored on the client and sent through authorization headers for protected requests.</p>
+<h2>4.1 Data Flow</h2>
+<ul>
+<li>A user registers or logs in through the authentication API.</li>
+<li>The backend validates credentials, generates a JWT token, and returns user role information.</li>
+<li>The frontend stores the user session and controls route access through protected routes.</li>
+<li>Artists upload artwork and create auctions through protected API endpoints.</li>
+<li>Buyers browse public artwork and auction data and place bids through authenticated bid APIs.</li>
+<li>Socket.IO broadcasts new bid updates to users viewing the same auction.</li>
+<li>Orders and notifications are generated for payment and auction-related events.</li>
+</ul>
+<h2>4.2 Database Design</h2>
+<ul>
+<li>User: stores name, email, hashed password, role, avatar, bio, and active status.</li>
+<li>Artwork: stores artist reference, title, description, category, medium, dimensions, base price, image URL, tags, featured flag, and status.</li>
+<li>Auction: stores artwork reference, artist reference, starting bid, current highest bid, highest bidder, end date, status, and winner.</li>
+<li>Bid: stores auction reference, buyer reference, bid amount, and bid timestamp.</li>
+<li>Order: stores buyer, artwork, auction, amount, payment status, delivery status, transaction details, and shipping address.</li>
+<li>Notification: stores receiver, type, message, read status, and related event information.</li>
+</ul>
+</section>
+<section class='page'>
+<h1>5. MODULE DESCRIPTION</h1>
+<h2>5.1 Authentication Module</h2>
+<p>The authentication module includes registration, login, current user retrieval, and profile update features. Passwords are hashed with bcryptjs, and JWT is used to authenticate protected requests. Role-based protected routes separate Artist, Buyer, and Admin workflows.</p>
+<h2>5.2 Gallery Module</h2>
+<p>The gallery module displays artworks with filters for category, status, sort order, search text, and price range. Each artwork card links to a detailed page showing title, artist, category, description, price, status, and auction information when applicable.</p>
+<h2>5.3 Artwork Upload Module</h2>
+<p>Artists can upload artwork with title, description, category, medium, dimensions, base price, tags, and artwork image. The backend uses Multer to handle file upload and stores artwork metadata in MongoDB.</p>
+<h2>5.4 Auction Module</h2>
+<p>Artists can create auctions for available artworks. Buyers can view active auctions, inspect details, track countdown timers, view current highest bids, and place bids. Socket.IO updates auction pages when new bids are placed.</p>
+<h2>5.5 Order and Payment Module</h2>
+<p>The order module supports mock payment after a buyer wins or purchases artwork. Paid orders include transaction information and receipt display. This module is designed so a real payment provider can be integrated later.</p>
+<h2>5.6 Notification Module</h2>
+<p>Notifications inform users about bids, auction wins, payment events, and other general updates. Users can mark notifications as read or mark all notifications as read.</p>
+<h2>5.7 Admin Module</h2>
+<p>The admin dashboard provides platform statistics and management views for users, artworks, and auctions. Admin users can monitor the system and toggle or delete user accounts where required.</p>
+</section>
+<section class='page'>
+<h1>6. IMPLEMENTATION DETAILS</h1>
+<h2>6.1 Frontend Implementation</h2>
+<p>The frontend is organized into pages, components, Redux slices, and API services. React Router manages navigation. Redux Toolkit stores authentication, artworks, auctions, bids, orders, and notifications. Axios centralizes API calls and attaches JWT tokens to protected requests.</p>
+<h2>6.2 Backend Implementation</h2>
+<p>The backend is structured into routes, controllers, middleware, models, config, and utilities. Express handles API routing. Mongoose manages database schemas. Auth middleware protects routes by verifying JWT tokens. Role middleware restricts access to Artist, Buyer, and Admin operations.</p>
+<h2>6.3 API Endpoints</h2>
+<ul>
+<li>/api/auth/register, /api/auth/login, /api/auth/me, /api/auth/profile</li>
+<li>/api/artworks, /api/artworks/my, /api/artworks/:id</li>
+<li>/api/auctions, /api/auctions/my, /api/auctions/:id, /api/auctions/:id/end</li>
+<li>/api/bids, /api/bids/auction/:auctionId, /api/bids/my</li>
+<li>/api/orders, /api/orders/my, /api/orders/:id, /api/orders/:id/pay</li>
+<li>/api/notifications, /api/notifications/:id/read, /api/notifications/read-all</li>
+<li>/api/admin/stats, /api/admin/users, /api/admin/artworks</li>
+</ul>
+</section>
+<section class='page'><h1>7. USER INTERFACE SCREENSHOTS</h1>
+<p>The following screenshots were captured from the running local ArtVault application at http://localhost:5173.</p>
+<div class='caption'>Figure 7.1: Home Page</div>
+<img class='shot' src='screenshots/01_home.png'>
+<div class='caption'>Figure 7.2: Artwork Gallery</div>
+<img class='shot' src='screenshots/02_gallery.png'>
+<div class='caption'>Figure 7.3: Auction Listing</div>
+<img class='shot' src='screenshots/03_auctions.png'>
+<div class='caption'>Figure 7.4: Artwork Details Page</div>
+<img class='shot' src='screenshots/04_artwork_details.png'>
+<div class='caption'>Figure 7.5: Auction Detail and Bid Panel</div>
+<img class='shot' src='screenshots/05_auction_detail.png'>
+<div class='caption'>Figure 7.6: Login Page</div>
+<img class='shot' src='screenshots/06_login.png'>
+<div class='caption'>Figure 7.7: Registration Page</div>
+<img class='shot' src='screenshots/07_register.png'>
+<div class='caption'>Figure 7.8: Protected Artist Upload Route</div>
+<img class='shot' src='screenshots/08_upload_redirect.png'>
+<div class='caption'>Figure 7.9: Protected Notifications Route</div>
+<img class='shot' src='screenshots/09_notifications_redirect.png'>
+</section>
+<section class='page'>
+<h1>8. TESTING</h1>
+<p>Testing was performed by validating user flows, protected route behavior, API responses, data display, and frontend build quality. Public pages were checked in the browser and backend health was verified through the health API.</p>
+<h2>8.1 Test Cases</h2>
+<ul>
+<li>Register User: Verify buyer or artist account creation with required fields.</li>
+<li>Login User: Verify valid users receive token and dashboard access.</li>
+<li>Browse Gallery: Verify artworks load and filters update results.</li>
+<li>View Artwork Details: Verify artwork information, artist, price, status, and image display.</li>
+<li>View Auctions: Verify active auctions and bid values are visible.</li>
+<li>Place Bid: Verify buyer can submit a bid higher than current highest bid.</li>
+<li>Protected Routes: Verify unauthenticated users are redirected to login.</li>
+<li>Admin Dashboard: Verify platform statistics and management tables load for admin role.</li>
+<li>Build and Lint: Verify frontend checks pass without lint errors.</li>
+</ul>
+<h2>8.2 Validation Result</h2>
+<ul>
+<li>Frontend local server responded successfully at http://localhost:5173.</li>
+<li>Backend health endpoint responded successfully at http://localhost:5000/api/health.</li>
+<li>Artwork API returned populated artwork records.</li>
+<li>Auction API returned active auction records with artwork and bidder data.</li>
+<li>Screenshots were captured from the live local application.</li>
+</ul>
+</section>
+<section class='page'>
+<h1>9. FUTURE SCOPE</h1>
+<ul>
+<li>Integrate a real payment gateway such as Razorpay or Stripe.</li>
+<li>Add advanced auction rules such as bid increments, reserve price, and auto-extension.</li>
+<li>Add email notifications for bid updates and payment confirmations.</li>
+<li>Add artist verification and artwork approval workflow.</li>
+<li>Add order shipment tracking and delivery partner integration.</li>
+<li>Add analytics reports for artists and administrators.</li>
+<li>Improve image storage using cloud services such as Cloudinary or AWS S3.</li>
+</ul>
+</section>
+<section class='page'>
+<h1>10. CONCLUSION</h1>
+<p>ArtVault successfully demonstrates a full-stack online art gallery and auction platform. The project combines a responsive React frontend, Express backend, MongoDB database, JWT authentication, role-based access, real-time auction updates, mock payment flow, and dashboards for different users. It provides a practical solution for artists and buyers and can be extended into a production-ready marketplace with payment, verification, and deployment enhancements.</p>
+</section>
+<section class='page'>
+<h1>11. REFERENCES</h1>
+<ul>
+<li>React Documentation - https://react.dev/</li>
+<li>Vite Documentation - https://vite.dev/</li>
+<li>Express Documentation - https://expressjs.com/</li>
+<li>MongoDB Documentation - https://www.mongodb.com/docs/</li>
+<li>Mongoose Documentation - https://mongoosejs.com/</li>
+<li>Socket.IO Documentation - https://socket.io/docs/</li>
+<li>Redux Toolkit Documentation - https://redux-toolkit.js.org/</li>
+</ul>
+</section>
+</body></html>

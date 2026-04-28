@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 import store from './redux/store';
@@ -58,6 +58,11 @@ function App() {
           {/* Any logged-in user */}
           <Route path="/notifications" element={
             <ProtectedRoute><Notifications /></ProtectedRoute>
+          } />
+
+          {/* Orders (redirect to buyer dashboard) */}
+          <Route path="/orders" element={
+            <ProtectedRoute allowedRoles={['buyer']}><Navigate to="/buyer-dashboard" replace /></ProtectedRoute>
           } />
 
           {/* 404 */}

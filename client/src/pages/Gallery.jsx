@@ -10,7 +10,7 @@ const STATUSES = ['All', 'available', 'auction'];
 const Gallery = () => {
   const [artworks, setArtworks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [filters, setFilters] = useState({
     category: searchParams.get('category') || 'All',
     status: 'All',
@@ -20,8 +20,8 @@ const Gallery = () => {
     maxPrice: '',
   });
 
-  const fetchArtworks = async () => {
-    setLoading(true);
+  useEffect(() => {
+    let active = true;
     const params = {};
     if (filters.category !== 'All') params.category = filters.category;
     if (filters.status !== 'All') params.status = filters.status;
@@ -29,16 +29,22 @@ const Gallery = () => {
     if (filters.search) params.search = filters.search;
     if (filters.minPrice) params.minPrice = filters.minPrice;
     if (filters.maxPrice) params.maxPrice = filters.maxPrice;
-    try {
-      const { data } = await getArtworks(params);
-      setArtworks(data.data);
-    } catch { setArtworks([]); }
-    setLoading(false);
+    getArtworks(params)
+      .then(({ data }) => active && setArtworks(data.data))
+      .catch(() => active && setArtworks([]))
+      .finally(() => active && setLoading(false));
+    return () => { active = false; };
+  }, [filters]);
+
+  const updateFilter = (key, val) => {
+    setLoading(true);
+    setFilters(f => ({ ...f, [key]: val }));
   };
 
-  useEffect(() => { fetchArtworks(); }, [filters]);
-
-  const updateFilter = (key, val) => setFilters(f => ({ ...f, [key]: val }));
+  const resetFilters = () => {
+    setLoading(true);
+    setFilters({ category: 'All', status: 'All', sort: 'newest', search: '', minPrice: '', maxPrice: '' });
+  };
 
   return (
     <div className="gallery-page">
@@ -94,7 +100,7 @@ const Gallery = () => {
                 <input type="number" className="form-input" placeholder="Max" value={filters.maxPrice} onChange={e => updateFilter('maxPrice', e.target.value)} />
               </div>
             </div>
-            <button className="btn btn-ghost" style={{ width: '100%' }} onClick={() => setFilters({ category: 'All', status: 'All', sort: 'newest', search: '', minPrice: '', maxPrice: '' })}>
+            <button className="btn btn-ghost" style={{ width: '100%' }} onClick={resetFilters}>
               Reset Filters
             </button>
           </aside>

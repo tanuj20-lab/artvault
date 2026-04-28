@@ -8,12 +8,19 @@ const Auctions = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
+    let active = true;
     getAuctions({ status: filter })
-      .then(({ data }) => setAuctions(data.data))
-      .catch(() => setAuctions([]))
-      .finally(() => setLoading(false));
+      .then(({ data }) => active && setAuctions(data.data))
+      .catch(() => active && setAuctions([]))
+      .finally(() => active && setLoading(false));
+    return () => { active = false; };
   }, [filter]);
+
+  const handleFilterChange = (status) => {
+    if (status === filter) return;
+    setLoading(true);
+    setFilter(status);
+  };
 
   return (
     <div style={{ padding: '100px 0 80px', minHeight: '100vh' }}>
@@ -24,7 +31,7 @@ const Auctions = () => {
         </div>
         <div style={{ display: 'flex', gap: '8px', marginBottom: '32px' }}>
           {['active', 'ended'].map(s => (
-            <button key={s} className={`btn ${filter === s ? 'btn-primary' : 'btn-ghost'}`} onClick={() => setFilter(s)}>
+            <button key={s} className={`btn ${filter === s ? 'btn-primary' : 'btn-ghost'}`} onClick={() => handleFilterChange(s)}>
               {s === 'active' ? '🔴 Live Auctions' : 'Ended Auctions'}
             </button>
           ))}

@@ -23,10 +23,10 @@ const ArtworkDetails = () => {
         getAuctions({ status: 'active' }).then(({ data: auctData }) => {
           const match = auctData.data.find(a => a.artworkId?._id === id || a.artworkId === id);
           if (match) setAuction(match);
-        }).catch(() => {});
+        }).catch(() => setAuction(null));
       }
     }).catch(() => navigate('/gallery')).finally(() => setLoading(false));
-  }, [id]);
+  }, [id, navigate]);
 
   const handleDelete = async () => {
     if (!window.confirm('Delete this artwork?')) return;
